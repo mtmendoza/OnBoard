@@ -61,8 +61,8 @@
                 <hr>
                 <div class="row"
                      <div class="col-lg-8">
-                        <div class="col-lg-4 text-right">
-                        <button class="btn btn-action" type="submit">Sign in</button>
+                        <div class="col-lg-12 text-right">
+                        <button class="btn btn-action" type="submit">Register</button>
                         </div>
                     </div>
             
