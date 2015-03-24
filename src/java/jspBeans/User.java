@@ -22,7 +22,7 @@ public class User
         this.user_type = user_type;
         this.manager_id = manager_id;
         this.password = password;
-        orgsManaged = new ArrayList<>();
+        orgsManaged = new ArrayList();
     }
     
     public int getUser_id()
@@ -110,5 +110,9 @@ public class User
         orgsManaged.add(o);
     }
     
+    public String getFullName()
+    {
+        return first_name + " " + last_name;
+    }
 }
 

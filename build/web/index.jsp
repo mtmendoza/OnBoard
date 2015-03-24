@@ -49,7 +49,7 @@
   {
     for (Cookie cookie : cookies)
     {
-        if (cookie.getName().equals("user"))
+        if (cookie.getName().equals("user_name"))
             userName = cookie.getValue();
     }
   }

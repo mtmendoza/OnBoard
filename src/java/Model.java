@@ -1,6 +1,6 @@
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import jspBeans.Organization;
 import jspBeans.User;
@@ -16,14 +16,16 @@ public class Model
         db.getConnection();
     }
 
-    public static User getUser(int user_id, String password)
+    public static User getUser(String user_id, String password)
     {
         User user = null;
+        db = new DBConnection();
+        db.getConnection();
         try
         {
-            ResultSet rs, rs2;
+            ResultSet rs;
             PreparedStatement statement;
-            String query = "SELECT * FROM users WHERE user_id = '" + user_id + "' AND password = '" + password + "'";
+            String query = "SELECT * FROM user WHERE user_id = '" + user_id + "' AND password = '" + password + "'";
             statement = db.getConnection().prepareStatement(query);
             rs = statement.executeQuery();
             if (rs.next())
@@ -47,5 +49,28 @@ public class Model
         }
         return user;
     }
-}
 
+    public static Organization getOrg(String org_id, String password)
+    {
+        Organization org = null;
+        db = new DBConnection();
+        db.getConnection();
+        try
+        {
+            ResultSet rs, rs2;
+            PreparedStatement statement;
+            String query = "SELECT * FROM organization WHERE org_id = '" + org_id + "' AND password = '" + password + "'";
+            statement = db.getConnection().prepareStatement(query);
+            rs = statement.executeQuery();
+            if (rs.next())
+            {
+                org = new Organization(rs.getInt("org_id"), rs.getString("org_name"), rs.getString("password"));
+            }
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return org;
+    }
+}
