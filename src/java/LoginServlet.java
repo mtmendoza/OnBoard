@@ -1,8 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -12,10 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Jolo Simeon
- */
 public class LoginServlet extends HttpServlet
 {
 
@@ -37,7 +30,7 @@ public class LoginServlet extends HttpServlet
         } 
         else
         {
-            
+
             Cookie loginCookie = new Cookie("user", user);
             int orders = 0;
             Cookie orderCookie = new Cookie("totalOrders", String.valueOf(orders));
@@ -46,8 +39,8 @@ public class LoginServlet extends HttpServlet
             orderCookie.setMaxAge(30 * 60);
             response.addCookie(loginCookie);
             response.addCookie(orderCookie);
-            response.sendRedirect("home.jsp");
 
+            response.sendRedirect("index.jsp");
         }
     }
 }

@@ -1,0 +1,42 @@
+body, html {
+	min-height: 100%;
+	background-attachment: fixed;
+	background-color: lemonchiffon;
+}
+
+.navbar {
+	width: 100%;
+	background-color: teal;
+	border-style: none;
+	color: lightcyan;
+	margin-bottom: 0px;
+}
+
+.navbar-brand {
+	font-size: 30px;
+	font-family: georgia;
+	color: lightcyan;
+}
+
+.navbar-search {
+	margin-top: 12px;
+}
+
+.navbar-searchbar {
+	width: 400px;
+}
+
+.navbar-searchbutton {
+	color: lightslategrey;
+}
+
+.navbar-right {
+	margin-top: 12px;
+	color: lightcyan;
+}
+
+.div-center{
+	margin-top: 50px;
+	margin-left: 250px;
+	position: block;
+}

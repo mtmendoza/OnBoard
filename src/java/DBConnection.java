@@ -1,3 +1,4 @@
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -45,10 +46,6 @@ private static DBConnection instance;
 		
         return instance;
     }
-
-
-
-
 
 }
 
