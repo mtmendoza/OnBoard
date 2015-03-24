@@ -14,7 +14,7 @@
  <body>
      	<nav class="navbar navbar-custom" style="margin-bottom:0px;">
           <div class="navbar-header">
-                <a class="navbar-link navbar-brand" href="index-login.html">Onboard</a>
+                <a class="navbar-link navbar-brand" href="index.jsp">Onboard</a>
             </div>
       </nav>
   <div class="container pagecontent">
