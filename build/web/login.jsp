@@ -34,7 +34,7 @@
               
               <form action= "LoginServlet" method="post">
                 <div class="top-margin">
-                  <label>Username/Email <span class="text-danger">*</span></label>
+                  <label>ID # / Email <span class="text-danger">*</span></label>
                   <input type="text" class="form-control" name = "user">
                 </div>
                 <div class="top-margin">
