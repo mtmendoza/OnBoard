@@ -32,6 +32,14 @@ public class Model
             {
                 user = new User(rs.getInt("user_id"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("email"), rs.getString("user_type"), rs.getInt("manager_id"), rs.getString("password"));
             }
+            
+            query = "SELECT * FROM user WHERE email = '" + user_id + "' AND password = '" + password + "'";
+            statement = db.getConnection().prepareStatement(query);
+            rs = statement.executeQuery();
+            if (rs.next())
+            {
+                user = new User(rs.getInt("user_id"), rs.getString("first_name"), rs.getString("last_name"), rs.getString("email"), rs.getString("user_type"), rs.getInt("manager_id"), rs.getString("password"));
+            }
 
             if (user != null && user.getManager_id() != 0)
             {
@@ -57,7 +65,7 @@ public class Model
         db.getConnection();
         try
         {
-            ResultSet rs, rs2;
+            ResultSet rs;
             PreparedStatement statement;
             String query = "SELECT * FROM organization WHERE org_id = '" + org_id + "' AND password = '" + password + "'";
             statement = db.getConnection().prepareStatement(query);
@@ -72,5 +80,23 @@ public class Model
             e.printStackTrace();
         }
         return org;
+    }
+    
+    public static void registerUser(int user_id, String first_name, String last_name, String email, String user_type, int manager_id, String password)
+    {
+        db = new DBConnection();
+        db.getConnection();
+        try
+        {
+            ResultSet rs;
+            PreparedStatement statement;
+            String query = "INSERT INTO user(user_id, first_name, last_name, email, user_type, manager_id, password) VALUES('" + user_id + "','" + first_name  + "','" + last_name + "','" + email + "','" + user_type + "','" + "0" + "','" + password +"')";
+            statement = db.getConnection().prepareStatement(query);
+            statement.executeUpdate();
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }

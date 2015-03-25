@@ -27,7 +27,7 @@
               <h3 class="thin text-center">Register a New Account</h3>
               <p class="text-center text-muted">Have an account already? <a style="color:blue;" href="login.jsp">Login</a> here! </p>
               <hr>
-              <form method="RegisterUserServlet" action="post">
+            <form action = "RegisterUserServlet" method = "post">
                 <div class=" row top-margin">
                   <div class="col-sm-6">
                     <label>First Name <span class="text-danger">*</span> </label>

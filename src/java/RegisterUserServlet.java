@@ -17,15 +17,19 @@ public class RegisterUserServlet extends HttpServlet
             HttpServletResponse response) throws ServletException, IOException
     {
         //get request parameters for userID and password
-        String user = request.getParameter("user");
-        String pwd = request.getParameter("pw");
-        User account = Model.getUser(user, pwd);
-        Organization org = Model.getOrg(user, pwd);
+        String fname = request.getParameter("first_name");
+        String lname = request.getParameter("last_name");
+        String email = request.getParameter("email");
+        String idnum = request.getParameter("id_num");
+        String pwd = request.getParameter("pwd");
+        String confirmpwd = request.getParameter("confirmpwd");
 
         if (user.equals("") || pwd.equals(""))
         {
 
-        } else if (account != null)
+        } 
+        
+        else if (account != null)
         {
             Cookie idCookie = new Cookie("user_id", String.valueOf(account.getUser_id()));
             Cookie nameCookie = new Cookie("user_name", String.valueOf(account.getFullName()));
