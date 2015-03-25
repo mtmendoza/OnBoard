@@ -27,35 +27,35 @@
               <h3 class="thin text-center">Register a New Account</h3>
               <p class="text-center text-muted">Have an account already? <a style="color:blue;" href="login.jsp">Login</a> here! </p>
               <hr>
-              <form>
+              <form method="RegisterUserServlet" action="post">
                 <div class=" row top-margin">
                   <div class="col-sm-6">
                     <label>First Name <span class="text-danger">*</span> </label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name = "first_name">
                   </div>
                   <div class="col-sm-6">
                     <label>Last Name <span class="text-danger">*</span> </label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name = "last_name">
                   </div>
                 </div>
                 <div class=" row top-margin">
                   <div class="col-sm-6">
                     <label>Email Address <span class="text-danger">*</span> </label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name = "email">
                   </div>
                   <div class="col-sm-6">
                     <label>ID Number <span class="text-danger">*</span> </label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name = "id_num">
                   </div>
                 </div>
                 <div class="row top-margin">
                   <div class="col-sm-6">
                     <label>Password <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name = "pwd">
                   </div>
                   <div class="col-sm-6">
                     <label>Confirm Password <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name = "confirmpwd">
                   </div>
                 </div>
                 <hr>
