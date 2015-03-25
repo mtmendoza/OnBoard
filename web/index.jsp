@@ -76,9 +76,9 @@
               <ul class="navbar-right">
                 <% if (userName != null) 
                 { %>
-                   <li><a class="navbar-acct" href="home-orders.jsp"><span class="glyphicon glyphicon-shopping-cart navbar-acct"></span> Orders </a></li>
+                   <li><a class="navbar-acct" href="index.jsp"><span class="glyphicon glyphicon-shopping-cart navbar-acct"></span> Orders </a></li>
                    <li><a class="navbar-acct" href="#"><span class="glyphicon glyphicon-user navbar-acct"></span> <%=userName%> </a></li>
-                   <li><a class="navbar-acct" href="index.jsp"><span class="glyphicon glyphicon-off navbar-acct"></span>Log Out</a></li>
+                   <li><a class="navbar-acct" href="LogoutServlet"><span class="glyphicon glyphicon-off navbar-acct"></span>Log Out</a></li>
                 <%} 
                 else
                 {%>
@@ -120,7 +120,7 @@
           <div class="hero-unit">
             <% if (userName != null) 
                 { %>
-            <h1>Hello, <%=userName %></h1>
+            <h1>Hello, <%=userName %>!</h1>
             <p>Good morning friend, you are so awesome. Everything is awesome. Everything is cool when you are part of a team.</p>
             <% }
             else{ %>

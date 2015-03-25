@@ -51,11 +51,11 @@
                 <div class="row top-margin">
                   <div class="col-sm-6">
                     <label>Password <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name = "pwd">
+                    <input type="password" class="form-control" name = "pwd">
                   </div>
                   <div class="col-sm-6">
-                    <label>Confirm Password <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name = "confirmpwd">
+                    <label>Confirm Password <span class="text-danger" >*</span></label>
+                    <input type="password" class="form-control" name = "confirmpwd">
                   </div>
                 </div>
                 <hr>

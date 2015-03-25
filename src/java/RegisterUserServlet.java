@@ -23,37 +23,9 @@ public class RegisterUserServlet extends HttpServlet
         String idnum = request.getParameter("id_num");
         String pwd = request.getParameter("pwd");
         String confirmpwd = request.getParameter("confirmpwd");
-
-        if (user.equals("") || pwd.equals(""))
-        {
-
-        } 
-        
-        else if (account != null)
-        {
-            Cookie idCookie = new Cookie("user_id", String.valueOf(account.getUser_id()));
-            Cookie nameCookie = new Cookie("user_name", String.valueOf(account.getFullName()));
-            //setting cookie to expiry in 30 mins
-            idCookie.setMaxAge(30 * 60);
-            nameCookie.setMaxAge(30 * 60);
-            response.addCookie(idCookie);
-            response.addCookie(nameCookie);
-            response.sendRedirect("index.jsp");
-        } 
-        else if (org != null)
-        {
-            response.sendRedirect("index.jsp");
-        } 
-        else
-        {
-            RequestDispatcher rd
-                    = getServletContext().getRequestDispatcher("/login.jsp");
-            PrintWriter out = response.getWriter();
-            //out.println("<font color = red>Either username or password is wrong.</font>");
-            rd.include(request, response);
-            //response.sendRedirect("index.jsp");
-            rd.forward(request, response);
-        }
+       
+        Model.registerUser(Integer.valueOf(idnum), fname, lname, email, "Student", 0, pwd);
+        response.sendRedirect("index.jsp");
     }
 
 }

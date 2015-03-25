@@ -8,6 +8,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import jspBeans.Organization;
 import jspBeans.User;
 
@@ -34,6 +35,8 @@ public class LoginServlet extends HttpServlet
             Cookie idCookie = new Cookie("user_id", String.valueOf(account.getUser_id()));
             Cookie nameCookie = new Cookie("user_name", String.valueOf(account.getFullName()));
             //setting cookie to expiry in 30 mins
+            HttpSession session = request.getSession();
+            session.setAttribute("userAccount", account);
             idCookie.setMaxAge(30 * 60);
             nameCookie.setMaxAge(30 * 60);
             response.addCookie(idCookie);
@@ -43,7 +46,7 @@ public class LoginServlet extends HttpServlet
         
         else if (org != null)
         {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("admin.jsp");
         }
         
         else

@@ -88,13 +88,14 @@ public class Model
         db.getConnection();
         try
         {
-            ResultSet rs;
             PreparedStatement statement;
             String query = "INSERT INTO user(user_id, first_name, last_name, email, user_type, manager_id, password) VALUES('" + user_id + "','" + first_name  + "','" + last_name + "','" + email + "','" + user_type + "','" + "0" + "','" + password +"')";
             statement = db.getConnection().prepareStatement(query);
             statement.executeUpdate();
 
-        } catch (Exception e)
+        }
+        
+        catch (Exception e)
         {
             e.printStackTrace();
         }

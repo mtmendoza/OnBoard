@@ -19,6 +19,10 @@
         <servlet-name>RegisterUserServlet</servlet-name>
         <servlet-class>RegisterUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>LogoutServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProcessOrderServlet</servlet-name>
         <url-pattern>/ProcessOrderServlet</url-pattern>
@@ -30,6 +34,10 @@
     <servlet-mapping>
         <servlet-name>RegisterUserServlet</servlet-name>
         <url-pattern>/RegisterUserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
