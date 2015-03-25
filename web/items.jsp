@@ -92,7 +92,11 @@
                <ul class="navbar-right">
                    <li><a class="navbar-acct" href="home-orders.jsp"><span class="glyphicon glyphicon-shopping-cart navbar-acct"></span> Orders </a></li>
                 <li><a class="navbar-acct" href="#"><span class="glyphicon glyphicon-user navbar-acct"></span><%=userName %></a></li>
-                <li><a class="navbar-acct" href="home-browse.html"><span class="glyphicon glyphicon-off navbar-acct"></span>Log Out</a></li>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="ordersort">
+                <li role="presentation"><button type="button" tabindex="-1" data-toggle="modal" data-target="#org-list" class="login-as"><span class="glyphicon glyphicon-lock navbar-acct"></span> Log in as...</button></li>
+                <div></div>
+                <li role="presentation"><button type="button" tabindex="-1" data-toggle="modal" data-target="org-list" class="login-as"><span class="glyphicon glyphicon-off navbar-acct"></span> Log Out</button></li>
+              </ul>
               </ul>
             </div>
           </div>
@@ -122,6 +126,44 @@
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
+
+        <! Modal >
+    <div class="modal modal-alert-custom fade" id="org-list" tabindex="-1" role="dialog" aria-labelledby="checkerLabel1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+            <h4 class="modal-title" id="checkerLabel1">Organizations Managed </h4>
+          </div>
+          <div class="modal-body">
+            <p>Manager ID: 150001</p> <! must be gotten from sql>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Organization</th> <!sql too>
+                  <th>Password</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>La Salle Computer Society</td>
+                  <td><input type="password"> <button class="btn btn-default btn-xs" type="button">Log In</button></td>
+                </tr>
+                <tr>
+                  <td>Computer Studies Government</td>
+                  <td><input type="password"> <button class="btn btn-default btn-xs" type="button">Log In</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <center>
+              <button type="button" class="btn btn-default btn-m" data-dismiss="modal">Close</button>       
+            </center>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
 
         <div class="span9">
           <div class="image-left">IMAGE BOX</div>
