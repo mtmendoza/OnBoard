@@ -52,6 +52,8 @@
             String userName = null;
             String id = null;
             Cookie[] cookies = request.getCookies();
+            ArrayList<Item> listItems = new ArrayList();
+            ArrayList<Organization> listOrgs = Model.getAllOrgs();
             if (cookies != null)
             {
                 for (Cookie cookie : cookies)
@@ -72,7 +74,12 @@
                 session = request.getSession();
                 session.setAttribute("user", Model.getUser(id));
             }
-            ArrayList<Item> listItems = Model.getAllItems();
+            
+            String orgdisplay = request.getParameter("org");
+            if (orgdisplay == null || orgdisplay.equals(""))
+                listItems = Model.getAllItems();
+            else
+                listItems = Model.getAllItems(Integer.valueOf(orgdisplay));
 
             /*session = request.getSession();
              User user = (User) session.getAttribute("userAccount");
@@ -129,10 +136,10 @@
                             <li><a href="#">Bags</a></li>
                             <li><a href="#">Other Apparels</a></li>
                             <li class="nav-header">Organizations</li>
-                                <% for (int i = 0; i < Model.getAllOrgs().size(); i++)
+                                <% for (int i = 0; i < listOrgs.size(); i++)
                                     {
-                                        String name = Model.getAllOrgs().get(i).getOrg_name();
-                                        int idorg = Model.getAllOrgs().get(i).getOrg_id();
+                                        String name = listOrgs.get(i).getOrg_name();
+                                        int idorg = listOrgs.get(i).getOrg_id();
                                 %>
                             <li><a href="index.jsp?org=<%=idorg%>"><%=name%></a></li>
                                 <% } %>
@@ -152,7 +159,7 @@
                         <% } else
             { %>
                         <h1>Hello, GUEST!</h1>
-                        <p>Why don't you register guest? Login now to order items!</p>
+                        <p>Why don't you register, guest? Login now to order items!</p>
                         <% } %>
                     </div>
 
