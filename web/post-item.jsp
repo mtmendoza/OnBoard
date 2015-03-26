@@ -63,7 +63,7 @@
                 <li><a class="navbar-acct" href="home-orders.html"><span class="glyphicon glyphicon-shopping-cart navbar-acct"></span> Orders </a></li>
                 <li><a class="navbar-acct" href="#"><span class="glyphicon glyphicon-user navbar-acct"></span> User Name </a>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="ordersort">
-                    <li role="presentation"><button type="button" tabindex="-1" data-toggle="modal" data-target="#org-list" class="login-as"><span class="glyphicon glyphicon-lock navbar-acct"></span> Log in as...</button></li>
+                    <li role="presentation"><button type="button" tabindex="-1" data-toggle="modal" data-target="#org-list" class="login-as"><span class="glyphicon glyphicon-lock navbar-acct"></span> Switch user...</button></li>
                     <div></div>
                     <li role="presentation"><button type="button" tabindex="-1" data-toggle="modal" data-target="org-list" class="login-as"><span class="glyphicon glyphicon-off navbar-acct"></span> Log Out</button></li>
                   </ul>
