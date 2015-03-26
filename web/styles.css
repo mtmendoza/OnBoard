@@ -218,3 +218,23 @@ a{
 	height: 100px;
 	width: 100%;
 }
+
+.glyphicon-off {
+	color: sienna;
+}
+
+.glyphicon-lock {
+	color: sienna;
+	background-color: lemonchiffon;
+}
+
+.login-as {
+	color: sienna;
+	background-color: lemonchiffon;
+	border-style: none;
+}
+
+.orglist-login {
+	color: sienna;
+	background-color: cadetblue;
+}

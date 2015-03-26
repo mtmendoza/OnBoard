@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Jolo%20Simeon/Projects/Onboard/web/signup.jsp</file>
             <file>file:/C:/Users/Jolo%20Simeon/Projects/Onboard/web/index.jsp</file>
             <file>file:/C:/Users/Jolo%20Simeon/Projects/Onboard/src/java/Model/Model.java</file>
@@ -14,6 +15,11 @@
             <file>file:/C:/Users/Jolo%20Simeon/Projects/Onboard/nbproject/build-impl.xml</file>
             <file>file:/C:/Users/Jolo%20Simeon/Projects/Onboard/web/login.jsp</file>
             <file>file:/C:/Users/Jolo%20Simeon/Projects/Onboard/src/java/jspBeans/Organization.java</file>
+=======
+            <file>file:/C:/Users/Hp/Documents/OnBoard/src/java/ProcessOrderServlet.java</file>
+            <file>file:/C:/Users/Hp/Documents/OnBoard/src/java/DBConnection.java</file>
+            <file>file:/C:/Users/Hp/Documents/OnBoard/src/java/LoginServlet.java</file>
+>>>>>>> 23b980cdff7f0ff1dcb4daf4e1c2804fd1dd62eb
         </group>
     </open-files>
 </project-private>

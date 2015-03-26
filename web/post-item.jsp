@@ -40,8 +40,7 @@
       <link rel="stylesheet" type="text/css" href="css/footer_style.css">
 
  </head>
- <body>
-  
+ <body>  
      	<nav class="navbar navbar-custom">
       		<div class="container-fluid">
             <div class="dropdown navbar-header">
@@ -61,9 +60,14 @@
           		<input type="text" class="navbar-search navbar-searchbar" placeholder="Search">
             	 <button type="button" class="navbar-search navbar-searchbutton"><span class="glyphicon glyphicon-search"></span></button>
               <ul class="navbar-right">
-                <li><a class="navbar-acct" href="home-orders.html"><span class="glyphicon glyphicon-shopping-cart navbar-acct"></span> Orders </a></li?
-                <li><a class="navbar-acct" href="#"><span class="glyphicon glyphicon-user navbar-acct"></span> User Name </a></li>
-                <li><a class="navbar-acct" href="index-login.html"><span class="glyphicon glyphicon-off navbar-acct"></span>Log Out</a></li>
+                <li><a class="navbar-acct" href="home-orders.html"><span class="glyphicon glyphicon-shopping-cart navbar-acct"></span> Orders </a></li>
+                <li><a class="navbar-acct" href="#"><span class="glyphicon glyphicon-user navbar-acct"></span> User Name </a>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="ordersort">
+                    <li role="presentation"><button type="button" tabindex="-1" data-toggle="modal" data-target="#org-list" class="login-as"><span class="glyphicon glyphicon-lock navbar-acct"></span> Switch user...</button></li>
+                    <div></div>
+                    <li role="presentation"><button type="button" tabindex="-1" data-toggle="modal" data-target="org-list" class="login-as"><span class="glyphicon glyphicon-off navbar-acct"></span> Log Out</button></li>
+                  </ul>
+                </li>
               </ul>
         		</div>
       		</div>
@@ -291,6 +295,41 @@
     <script src="js/bootstrap-carousel.js"></script>
     <script src="js/bootstrap-typeahead.js"></script>
 
-
+    <div class="modal modal-alert-custom fade" id="org-list" tabindex="-1" role="dialog" aria-labelledby="checkerLabel1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+            <h4 class="modal-title" id="checkerLabel1">Organizations Managed </h4>
+          </div>
+          <div class="modal-body">
+            <p>Manager ID: 150001</p> <! must be gotten from sql>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Organization</th> <!sql too>
+                  <th>Password</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>La Salle Computer Society</td>
+                  <td><input type="password"> <button class="btn btn-default btn-xs" type="button">Log In</button></td>
+                </tr>
+                <tr>
+                  <td>Computer Studies Government</td>
+                  <td><input type="password"> <button class="btn btn-default btn-xs" type="button">Log In</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <center>
+              <button type="button" class="btn btn-default btn-m" data-dismiss="modal">Close</button>       
+            </center>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
  </body>
 </html>
