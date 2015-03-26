@@ -18,13 +18,13 @@ USE `onboard`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `categories`
+-- Table structure for table `category`
 --
 
-DROP TABLE IF EXISTS `categories`;
+DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `categories` (
+CREATE TABLE `category` (
   `category_id` int(11) NOT NULL,
   `category_name` varchar(45) NOT NULL,
   PRIMARY KEY (`category_id`)
@@ -32,12 +32,12 @@ CREATE TABLE `categories` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `categories`
+-- Dumping data for table `category`
 --
 
-LOCK TABLES `categories` WRITE;
-/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -97,6 +97,29 @@ INSERT INTO `manager` VALUES (150001,2015001),(150001,2015002);
 UNLOCK TABLES;
 
 --
+-- Table structure for table `notification`
+--
+
+DROP TABLE IF EXISTS `notification`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notification` (
+  `sender_id` int(11) NOT NULL,
+  `receiver_id` int(11) NOT NULL,
+  `message` longtext
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notification`
+--
+
+LOCK TABLES `notification` WRITE;
+/*!40000 ALTER TABLE `notification` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notification` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `orders`
 --
 
@@ -108,6 +131,9 @@ CREATE TABLE `orders` (
   `buyer_id` int(11) NOT NULL,
   `order_qty` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
+  `status` varchar(45) NOT NULL,
+  `orderscol` varchar(45) DEFAULT NULL,
+  `contact_no` int(11) DEFAULT NULL,
   PRIMARY KEY (`order_id`),
   KEY `buyer_id_idx` (`buyer_id`),
   KEY `item_id_idx` (`item_id`),
@@ -122,7 +148,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES ('31415001A',11123456,1,1);
+INSERT INTO `orders` VALUES ('31415001A',11123456,1,1,'',NULL,NULL);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,4 +216,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-26 11:47:46
+-- Dump completed on 2015-03-26 12:21:20
