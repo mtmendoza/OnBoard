@@ -1,3 +1,6 @@
+<%@page import="jspBeans.User"%>
+<%@page import="jspBeans.Item"%>
+<%@page import="Model.Model"%>
 <html lang="en"><head>
       <meta charset="utf-8">
       <title>View Item</title>
@@ -53,24 +56,33 @@
 
    <body>
        
-       <%
-  String userName = null;
-  String orders = null;
+ <%
+  String userName = null, id  = null;
   Cookie[] cookies = request.getCookies();
+  
   if (cookies != null)
   {
     for (Cookie cookie : cookies)
     {
-        if (cookie.getName().equals("user"))
+        if (cookie.getName().equals("user_name"))
             userName = cookie.getValue();
-    }
-    
-    for (Cookie cookie : cookies)
-    {
-        if (cookie.getName().equals("totalOrders"))
-            orders = cookie.getValue();
+        
+         if (cookie.getName().equals("user_id"))
+            id = cookie.getValue();
     }
   }
+  
+  if (userName == null)
+      response.sendRedirect("login.jsp");
+  
+  else
+  {
+      session = request.getSession();
+      session.setAttribute("user", Model.getUser(id));
+  }
+  User user = Model.getUser(id);
+  String item_id = request.getParameter("item");
+  Item item = Model.getItem(Integer.valueOf(item_id));
   %>
 
         <nav class="navbar navbar-custom">
@@ -78,13 +90,13 @@
             <div class="dropdown navbar-header">
               <button class="menu-button dropdown-toggle" type="button" id="categories" data-toggle="dropdown" ><span class="glyphicon glyphicon-align-justify"></button>
               <ul class="dropdown-menu" role="menu" aria-labelledby="categories">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="home.jsp">Dashboard</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="index.jsp">Dashboard</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#contact">Contact Us</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#settings">Settings</a></li>
               </ul>
             </div>
             <div class="navbar-header">
-                <a class="navbar-link navbar-brand" href="home.jsp">Onboard</a>
+                <a class="navbar-link navbar-brand" href="index.jsp">Onboard</a>
             </div>
             <div>
               <input type="text" class="navbar-search navbar-searchbar" placeholder="Search">
@@ -92,7 +104,7 @@
                <ul class="navbar-right">
                    <li><a class="navbar-acct" href="home-orders.jsp"><span class="glyphicon glyphicon-shopping-cart navbar-acct"></span> Orders </a></li>
                 <li><a class="navbar-acct" href="#"><span class="glyphicon glyphicon-user navbar-acct"></span><%=userName %></a></li>
-                <li><a class="navbar-acct" href="home-browse.html"><span class="glyphicon glyphicon-off navbar-acct"></span>Log Out</a></li>
+                <li><a class="navbar-acct" href="LogoutServlet"><span class="glyphicon glyphicon-off navbar-acct"></span>Log Out</a></li>
               </ul>
             </div>
           </div>
@@ -103,19 +115,20 @@
         <div class="span3">
           <div class="sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header"><a href="home.jsp">Dashboard</a></li>
+              <li class="nav-header"></li>
               <li class="nav-header">Categories</li>
-              <li class="active"><a href="#">Shirts</a></li>
+              <li><a href="#">Shirts</a></li>
               <li><a href="#">Tickets</a></li>
               <li><a href="#">Bags</a></li>
               <li><a href="#">Other Apparels</a></li>
               <li class="nav-header">Organizations</li>
-              <li><a href="#">Harlequin Theatre Guild</a></li>
-              <li><a href="#">OVPIA</a></li>
-              <li><a href="#">OTREAS</a></li>
-              <li><a href="#">USG</a></li>
-              <li><a href="#">CSG</a></li>
-              <li><a href="#">Outdoor Club</a></li>
+              <% for (int i = 0; i < Model.getAllOrgs().size(); i++)
+              { 
+                  String name = Model.getAllOrgs().get(i).getOrg_name();
+                  int idorg  = Model.getAllOrgs().get(i).getOrg_id();
+              %>
+              <li><a href="index.jsp?org=<%=idorg%>"><%=name%></a></li>
+              <% } %>
               <li class="nav-header">Ending Sales</li>
               <li><a href="#">University Week Shirt 2015</a></li>
               <li><a href="#">Remix '14 Count 7</a></li>
@@ -124,30 +137,30 @@
         </div><!--/span-->
 
         <div class="span9">
-          <div class="image-left">IMAGE BOX</div>
+          <div class="image-left"></div>
             <div>
           <div class="hero-unit">
-              <h1>NICE ITEM</h1>
-              <h3>Organization Name</h3>
-              <p>Very nice item. Must buy.</p>
+              <h1><%=item.getItem_name().toUpperCase()%></h1>
+              <h3><%=item.getOrg().getOrg_name()%></h3>
+              <p><%=item.getItem_desc()%></p>
             </div>
           </div>
 
           <div class="row-fluid">
               <div class="hero-unit">
                 <div>
-                    <form action = "processOrder" method ="post"> 
+                    <form action = "order" method ="post"> 
                   <h3>Order Item</h3>
                   <hr>
-                  First Name: <input type="text" name="fname"><br>
-                  Last Name: <input type="text" name="lname"><br>
-                  ID Number: <input type="text" name="idnum"><br>
+                  First Name: <%=user.getFirst_name()%><br>
+                  Last Name: <%=user.getLast_name()%><br>
+                  E-Mail: <%=user.getEmail()%><br>
+                  ID Number: <%=user.getUser_id()%><br>
                   Contact # :  <input type="text" name="contact"><br>
-                  Email Address: <input type="text" name="email"><br>
-                  <br>
-                  Quantity: <input type="number" name="quantity"><br>
+                  Quantity: <input type="number" name="item_qty"><br>
+                  <input type = "hidden" name ="item_id" value ="<%=item_id%>">
                   <hr>
-                  <h3>Sub-Total: <%=orders %></h3> 
+                  <!--<h3>Sub-Total:</h3> -->
                   <button class="btn-primary btn-right" type = "submit"><a style="color:white"> Process Order</a></button>
                     </form>
                 </div>

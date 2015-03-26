@@ -1,5 +1,6 @@
 
 
+import Model.Model;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -46,6 +47,8 @@ public class LoginServlet extends HttpServlet
         
         else if (org != null)
         {
+            HttpSession session = request.getSession();
+            session.setAttribute("admin", org);
             response.sendRedirect("admin.jsp");
         }
         

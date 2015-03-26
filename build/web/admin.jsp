@@ -4,6 +4,10 @@
     Author     : Theresa
 --%>
 
+<%@page import="jspBeans.Organization"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="jspBeans.Item"%>
+<%@page import="Model.Model"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,13 +51,28 @@
 
  </head>
  <body>
+  <%
   
+  
+  String orgName = null;
+  ArrayList<Item> listItems = new ArrayList();
+  session = request.getSession();
+  Organization org = (Organization) session.getAttribute("admin");
+  if (org == null)
+      response.sendRedirect("login.jsp");
+  else
+  {
+    orgName = org.getOrg_name();
+    listItems = Model.getAllItems(org.getOrg_id());
+  }
+  
+  %> 
      	<nav class="navbar navbar-custom">
       		<div class="container-fluid">
             <div class="dropdown navbar-header">
               <button class="menu-button dropdown-toggle" type="button" id="categories" data-toggle="dropdown" aria-expanded="true"><span class="glyphicon glyphicon-align-justify"></button>
               <ul class="dropdown-menu" role="menu" aria-labelledby="categories">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="index-home.html">Dashboard</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="admin.jsp">Dashboard</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#contact">Contact Us</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#settings">Settings</a></li>
               </ul>
@@ -67,8 +86,8 @@
           		<input type="text" class="navbar-search navbar-searchbar" placeholder="Search">
             	 <button type="button" class="navbar-search navbar-searchbutton"><span class="glyphicon glyphicon-search"></span></button>
               <ul class="navbar-right">
-                <li><a class="navbar-acct" href="#"><span class="glyphicon glyphicon-user navbar-acct"></span> Organization Name </a></li>
-                <li><a class="navbar-acct" href="#"><span class="glyphicon glyphicon-off navbar-acct"></span>Log Out</a></li>
+                <li><a class="navbar-acct" href="#"><span class="glyphicon glyphicon-user navbar-acct"></span><%=orgName%></a></li>
+                <li><a class="navbar-acct" href="LogoutServlet"><span class="glyphicon glyphicon-off navbar-acct"></span>Log Out</a></li>
               </ul>
         		</div>
       		</div>
@@ -93,69 +112,31 @@
 
         <div class="span9">
           <div class="hero-unit">
-            <h1>Hello, USERNAME!</h1>
-            <h4>You are now in Organization Name Home</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla a ultrices est. Curabitur a pellentesque massa. Cras sed massa libero. In odio diam, euismod eget massa a, faucibus efficitur ipsum. Nam venenatis, purus eget accumsan faucibus, mi quam consequat est, quis dapibus dolor augue vel est. Nullam iaculis gravida aliquam. Vestibulum dictum nulla at cursus venenatis. Quisque feugiat dictum lacinia.</p>
+            <h1>Welcome, <%=orgName%>!</h1>
+            <!--<h4>You are now in Organization Name Home</h4>-->
+            <p>You say I'm crazy, 'Cause you don't think I know what you've done, But when you call me baby, I know I'm not the only one.</p>
           </div>
 
-          <div class="row-fluid">
-            <div class="span4">
+          <%
+            for(int ctr = 0; ctr < listItems.size();)
+            { %>
+                <div class="row-fluid">
+                <% for(int col = 0; col < 3 && ctr < listItems.size(); col++) 
+                { %>
+                   <div class="span4">
                <div class="card">
-                 <h2 class="card-heading simple">Heading</h2>
+                 <h2 class="card-heading simple"><%=listItems.get(ctr).getItem_name()%></h2>
                   <div class="card-body">
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn" href="items.html">View details »</a></p>
+                    <p><%=listItems.get(ctr).getItem_desc()%></p>
+                    <!--<p>
+                    <a class="btn" href="items.jsp?item=<%=listItems.get(ctr).getItem_id()%>">View details »</a>
+                    </p> -->
                   </div>
                </div>
-            </div><!--/span-->
-            <div class="span4">
-               <div class="card">
-                 <h2 class="card-heading simple">Heading</h2>
-                  <div class="card-body">
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn" href="items.html">View details »</a></p>
-                  </div>
-               </div>
-            </div><!--/span-->
-            <div class="span4">
-               <div class="card">
-                 <h2 class="card-heading simple">Heading</h2>
-                  <div class="card-body">
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn" href="#">View details »</a></p>
-                  </div>
-               </div>
-            </div><!--/span-->
-          </div><!--/row-->
-          <div class="row-fluid">
-            <div class="span4">
-               <div class="card">
-                 <h2 class="card-heading simple">Heading</h2>
-                  <div class="card-body">
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn" href="#">View details »</a></p>
-                  </div>
-               </div>
-            </div><!--/span-->
-            <div class="span4">
-               <div class="card">
-                 <h2 class="card-heading simple">Heading</h2>
-                  <div class="card-body">
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn" href="#">View details »</a></p>
-                  </div>
-               </div>
-            </div><!--/span-->
-            <div class="span4">
-               <div class="card">
-                 <h2 class="card-heading simple">Heading</h2>
-                  <div class="card-body">
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn" href="#">View details »</a></p>
-                  </div>
-               </div>
-            </div><!--/span-->
-          </div><!--/row-->
+            </div>
+                <%ctr++;}%>
+                </div>    
+            <%}%>
         </div><!--/span-->
       </div><!--/row-->
 

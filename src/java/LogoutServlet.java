@@ -44,11 +44,14 @@ public class LogoutServlet extends HttpServlet
         }
 
         HttpSession session = request.getSession();
-        session.setAttribute("userAccount", null);
+        session.invalidate();
+        if (idCookie != null && nameCookie != null)
+        {
         idCookie.setMaxAge(0);
         nameCookie.setMaxAge(0);
         response.addCookie(idCookie);
         response.addCookie(nameCookie);
+        }
         response.sendRedirect("index.jsp");
     }
 }

@@ -1,3 +1,4 @@
+<%@page import="Model.Model"%>
 <html lang="en"><head>
       <meta charset="utf-8">
       <title>Orders</title>
@@ -54,103 +55,57 @@
        
        <%
   String userName = null;
-  String orders = null;
-  String fname = null;
-        String lname = null;
-        String idnum = null;
-        String contact = null;
-        String email = null;
-        String quantity = null;
   Cookie[] cookies = request.getCookies();
   if (cookies != null)
   {
     for (Cookie cookie : cookies)
     {
-        if (cookie.getName().equals("user"))
+        if (cookie.getName().equals("user_name"))
             userName = cookie.getValue();
-        if (cookie.getName().equals("totalOrders"))
-            orders = cookie.getValue();
-        if (cookie.getName().equals("fname"))
-            fname = cookie.getValue();
-        if (cookie.getName().equals("lname"))
-            lname = cookie.getValue();
-        if (cookie.getName().equals("idnum"))
-            idnum = cookie.getValue();
-        if (cookie.getName().equals("contact"))
-            contact = cookie.getValue();
-        if (cookie.getName().equals("email"))
-            email = cookie.getValue();
-        if (cookie.getName().equals("quantity"))
-            quantity = cookie.getValue();
-        
     }
   }
+  
+  if (userName == null)
+      response.sendRedirect("login.jsp");
   %>
-        <nav class="navbar navbar-custom">
-          <div class="container-fluid">
+       <nav class="navbar navbar-custom">
+      		<div class="container-fluid">
             <div class="dropdown navbar-header">
               <button class="menu-button dropdown-toggle" type="button" id="categories" data-toggle="dropdown" ><span class="glyphicon glyphicon-align-justify"></button>
               <ul class="dropdown-menu" role="menu" aria-labelledby="categories">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="home.jsp">Dashboard</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="index.jsp">Dashboard</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#contact">Contact Us</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#settings">Settings</a></li>
               </ul>
             </div>
-            <div class="navbar-header">
-                <a class="navbar-link navbar-brand" href="home.jsp">Onboard</a>
-            </div>
-            <div>
-              <input type="text" class="navbar-search navbar-searchbar" placeholder="Search">
-               <button type="button" class="navbar-search navbar-searchbutton"><span class="glyphicon glyphicon-search"></span></button>
-               <ul class="navbar-right">
-                
-                    <li><a class="navbar-acct" href=""><span class="glyphicon glyphicon-shopping-cart navbar-acct"></span> Orders </a></li>
-                <li><a class="navbar-acct" href=""><span class="glyphicon glyphicon-user navbar-acct"></span> <%=userName %> </a></li>
-                <li><a class="navbar-acct" href="home-browse.html"><span class="glyphicon glyphicon-off navbar-acct"></span>Log Out</a></li>
-             
+        		<div class="navbar-header">
+          			<a class="navbar-link navbar-brand" href="index.jsp">Onboard</a>
+        		</div>
+        		<div>
+              
+              
+          		<input type="text" class="navbar-search navbar-searchbar" placeholder="Search">
+            	 <button type="button" class="navbar-search navbar-searchbutton"><span class="glyphicon glyphicon-search"></span></button>
+              <ul class="navbar-right">
+                   <li><a class="navbar-acct" href="home-orders.jsp"><span class="glyphicon glyphicon-shopping-cart navbar-acct"></span> Orders </a></li>
+                   <li><a class="navbar-acct" href="#"><span class="glyphicon glyphicon-user navbar-acct"></span> <%=userName%> </a></li>
+                   <li><a class="navbar-acct" href="LogoutServlet"><span class="glyphicon glyphicon-off navbar-acct"></span>Log Out</a></li>
+       
+                    
               </ul>
-            </div>
-          </div>
-      </nav>
+        		</div>
+      		</div>
+    	</nav>
 
-  <div class="container">
-    <div class= "row">
+   <div class="container">
+      <div class="row">
+        
       <div class="span9 center">
-              <div class="hero-unit">
-                <h3>Your Items!</h3>
-                <hr>
-                 <div class="container pagecontent">
-                    <div class="row">
-                      <table class="table-bordered table-revieworders col-md-8">
-                        <thead>
-                          <tr>
-                            <td class="col-sm-1">Item Code</td>
-                            <td class="col-sm-1">Status</td>
-                            <td class="col-sm-2">Item Name</td>
-                            <td class="col-sm-1">Num. of Orders</td>
-                            <td class="col-sm-1">Remarks</td>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>00001</td>
-                            <td>Active</td>
-                            <td>Animo University Shirts</td>
-                            <td>2</td>
-                            <td><a href="all-orders-details.html">Details</a></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div> 
-                  </div>
-                  <h6><a style="color:orange" href="home.jsp">BACK TO DASHBOARD</a></h6>
-              </div>
-
                <div class="hero-unit">
                 <h3>MONITOR PURCHASES</h3>
                 <hr>
                 <% 
-                   if(fname == null)
+                   if(true)
                     out.println("<p>You don't have pending items!</p>");
                    else
                    {
@@ -171,7 +126,7 @@
                             out.println("<td>00001</td>");
                             out.println("<td>Active</td>");
                             out.println("<td>Nice Item</td>");
-                            out.println("<td>" +  quantity + "</td>");
+                            out.println("<td>" +  1+ "</td>");
                             out.println("<td>Unclaimed</a></td>");
                          out.println(" </tr>");
                         out.println("</tbody>");
@@ -181,7 +136,7 @@
                    }
                  %>
                 
-                <h6><a style="color:orange" href="home.jsp">BACK TO DASHBOARD</a></h6>
+                <h6><a style="color:orange" href="index.jsp">BACK TO DASHBOARD</a></h6>
               </div>
       </div><!--/span-->
     </div>
@@ -193,7 +148,7 @@
       </div>
     </div>
 
-    </div><!--/.fluid-container-->
+
 
     <!-- Le javascript
     ================================================== -->
