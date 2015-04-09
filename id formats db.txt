@@ -5,4 +5,4 @@ org_id		: year(4 digits), 3-digit id number
 item_id		: 5-digit id number
 order_id	: term no, ay(e.g., 1415), 3-digit id number, 1-letter identifier
 * 1-letter identifier is for receipt purposes where more than one type of item is being purchased
-category_id	:
+category_id	: 4-digit number, first digit 1 (e.g. 1001)

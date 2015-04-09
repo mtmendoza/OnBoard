@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	 <meta charset="utf-8">
-      <title>Home</title>
+      <title>Post Item</title>
       <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -75,25 +75,10 @@
 
    <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span3">
-          <div class="sidebar-nav">
-            <ul class="nav nav-pills nav-stacked menu-itemtype">
-              <li><h3>Choose Item Type</h3></li>
-              <hr class="break"/>
-              <li class="active"><a href="#postshirts" onclick="toggle_visibility('postshirts')">Shirts/Jackets</a></li>
-              <li class="active"><a href="#postbagsaccessories" onclick="toggle_visibility('postbagsaccessories')">Bags & Accessories</a></li>
-              <li class="active"><a href="#postbooks" onclick="toggle_visibility('postbooks')">Books</a></li>
-              <li class="active"><a href="#posttickets" onclick="toggle_visibility('posttickets')">Tickets</a></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-        <div class="span9">
-          <div class="hero-unit">
-              <div class="col-md-1"></div>
+      <div class="col-md-3"></div>
       <div class="col-md-9">
-      <div class="accordion-toggle">
-        <form class="postform-shirts accordion-body collapse" id="postshirts">
-          <h3>Shirts/Jackets</h3>
+      <form class="postform-shirts" id="postshirts">
+          <h3>Post Item</h3>
           <hr class="break"/>
           <label class="col-sm-2">Title:</label>
           <span class=""><input type="text" name="itemName" class="col-sm-7"></span>
@@ -161,113 +146,8 @@
             <input type="submit" value="Submit">
           </div>
         </form>
-
-        <form class="postform-shirts accordion-body collapse" id="postbagsaccessories">
-          <h3>Bags</h3>
-          <hr class="break"/>
-          <label class="col-sm-2">Title:</label>
-          <span class=""><input type="text" name="itemName" class="col-sm-7"></span>
-          <div class="col-sm-12"></div>
-          <div class="col-sm-12"></div>
-          <label class="form-space col-sm-2" for="price">Qty:</label>
-          <span class="form-qty"><input type="number" name="price" class="col-sm-1 form-price form-qty"></span>
-          <div class="col-sm-12"></div>
-          <div class="col-sm-12"></div>
-          <div class="form-space postform" id="priceDesc">
-            <label class="form-space col-sm-2" for="price">Price:</label>
-            <span class="form-price"><input type="text" name="price" class="col-sm-1 currencyinput form-price"></span> <!?>
-            <div class="col-sm-12"></div>
-            <div class="col-sm-12"></div>
-            <label class="form-space col-sm-2" for="price">Image:</label>
-            <input type="text" name="img-url" class="col-sm-2 form-price" class="form-price" disabled="true">
-            <button class="form-price col-sm-1" type="button">Browse</button>
-            <div class="col-sm-12"></div>
-            <div class="col-sm-12"></div>
-            <label class="form-space col-sm-2" for="desc">Description:</label>
-            <textarea class="form-price form-textarea col-sm-6" rows="10" cols="50" sizeable="false"></textarea>
-          </div>
-          <div class="col-sm-12"></div>
-          <div class="col-sm-12"></div>
-          <div class="form-submit form-space col-sm-9">
-            <input type="submit" value="Submit">
-          </div>
-        </form>
-
-        <form class="postform-shirts accordion-body collapse" id="postbooks">
-          <h3>Books</h3>
-          <hr class="break"/>
-          <label class="col-sm-2">Title:</label>
-          <span class=""><input type="text" name="itemName" class="col-sm-7"></span>
-          <div class="col-sm-12"></div>
-          <div class="col-sm-12"></div>
-          <label class="form-space col-sm-2" for="price">Qty:</label>
-          <span class="form-qty"><input type="number" name="price" class="col-sm-1 form-price form-qty"></span>
-          <div class="col-sm-12"></div>
-          <div class="col-sm-12"></div>
-          <label class="form-space col-sm-2">Condition:</label>
-          <table>
-            <tbody class="col-sm-6">
-              <tr>
-                <td class="form-radio col-sm-2"><input class="form-price col-sm-2" type="radio" name="cond" value="new"> Brand New</td>
-                <td class="form-radio col-sm-2"><input class="form-price col-sm-2" type="radio" name="cond" value="old"> Pre-owned</td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="col-sm-12"></div>
-          <div class="col-sm-12"></div>
-          <div class="form-space postform" id="priceDesc">
-            <label class="form-space col-sm-2" for="price">Price:</label>
-            <span class="form-price"><input type="text" name="price" class="col-sm-1 currencyinput form-price"></span> <!?>
-            <div class="col-sm-12"></div>
-            <div class="col-sm-12"></div>
-            <label class="form-space col-sm-2" for="price">Image:</label>
-            <input type="text" name="img-url" class="col-sm-2 form-price" class="form-price" disabled="true">
-            <button class="form-price col-sm-1" type="button">Browse</button>
-            <div class="col-sm-12"></div>
-            <div class="col-sm-12"></div>
-            <label class="form-space col-sm-2" for="desc">Description:</label>
-            <textarea class="form-price form-textarea col-sm-6" rows="10" cols="50" sizeable="false"></textarea>
-          </div>
-          <div class="col-sm-12"></div>
-          <div class="col-sm-12"></div>
-          <div class="form-submit form-space col-sm-9">
-            <input type="submit" value="Submit">
-          </div>
-        </form>
-
-        <form class="postform-shirts accordion-body collapse" id="posttickets">
-          <h3>Tickets</h3>
-          <hr class="break"/>
-          <label class="col-sm-2">Title:</label>
-          <span class=""><input type="text" name="itemName" class="col-sm-7"></span>
-          <div class="col-sm-12"></div>
-          <div class="col-sm-12"></div>
-          <label class="form-space col-sm-2" for="price">Qty:</label>
-          <span class="form-qty"><input type="number" name="price" class="col-sm-1 form-price form-qty"></span>
-          <div class="col-sm-12"></div>
-          <div class="col-sm-12"></div>
-          <div class="form-space postform" id="priceDesc">
-            <label class="form-space col-sm-2" for="price">Price:</label>
-            <span class="form-price"><input type="text" name="price" class="col-sm-1 currencyinput form-price"></span> <!?>
-            <div class="col-sm-12"></div>
-            <div class="col-sm-12"></div>
-            <label class="form-space col-sm-2" for="price">Image:</label>
-            <input type="text" name="img-url" class="col-sm-2 form-price" class="form-price" disabled="true">
-            <button class="form-price col-sm-1" type="button">Browse</button>
-            <div class="col-sm-12"></div>
-            <div class="col-sm-12"></div>
-            <label class="form-space col-sm-2" for="desc">Description:</label>
-            <textarea class="form-price form-textarea col-sm-6" rows="10" cols="50" sizeable="false"></textarea>
-          </div>
-          <div class="col-sm-12"></div>
-          <div class="col-sm-12"></div>
-          <div class="form-submit form-space col-sm-9">
-            <input type="submit" value="Submit">
-          </div>
-        </form>
-      </div>
     </div> 
-          </div>
+    </div>
       </div><!--/row-->
 
      <div id="footer">
