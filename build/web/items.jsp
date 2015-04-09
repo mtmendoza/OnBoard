@@ -108,11 +108,6 @@
           <div class="sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header"><a href="home.jsp">Dashboard</a></li>
-              <li class="nav-header">Categories</li>
-              <li class="active"><a href="#">Shirts</a></li>
-              <li><a href="#">Tickets</a></li>
-              <li><a href="#">Bags</a></li>
-              <li><a href="#">Other Apparels</a></li>
               <li class="nav-header">Organizations</li>
               <li><a href="#">Harlequin Theatre Guild</a></li>
               <li><a href="#">OVPIA</a></li>
