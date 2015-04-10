@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import jspBeans.Item;
+import jspBeans.Order;
 import jspBeans.Organization;
 import jspBeans.User;
 
@@ -255,7 +256,7 @@ public class Model
         try
         {
             PreparedStatement statement;
-            String query = "INSERT INTO orders(order_id, buyer_id, order_qty, item_id) VALUES('" + order_id + "','" + user_id + "','" + order_qty  + "','" + item_id + "')";
+            String query = "INSERT INTO orders(order_id, buyer_id, order_qty, item_id, status) VALUES('" + order_id + "','" + user_id + "','" + order_qty  + "','" + item_id + "','" + "Pending" + "')";
             statement = db.getConnection().prepareStatement(query);
             statement.executeUpdate();
         }
@@ -264,6 +265,34 @@ public class Model
         {
             e.printStackTrace();
         }
+    }
+    
+    public static ArrayList<Order> getAllOrders(String userID)
+    {
+        db = new DBConnection();
+        db.getConnection();
+        ArrayList<Order> orders = new ArrayList();
+        try
+        {
+            PreparedStatement statement;
+            ResultSet rs;
+            String query = "SELECT * FROM orders WHERE buyer_id = '" + userID + "'";
+            statement = db.getConnection().prepareStatement(query);
+            rs = statement.executeQuery();
+            
+            while(rs.next())
+            {
+                User user = getUser(rs.getString("buyer_id"));
+                Item item = getItem(rs.getInt("item_id"));
+                orders.add(new Order(user, item, rs.getString("status"), rs.getString("contact_no"), rs.getString("order_id"), rs.getInt("order_qty")));
+            }
+        }
+        
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return orders;
     }
     
     

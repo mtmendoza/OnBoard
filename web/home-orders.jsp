@@ -1,3 +1,6 @@
+<%@page import="jspBeans.Order"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="jspBeans.User"%>
 <%@page import="Model.Model"%>
 <html lang="en"><head>
       <meta charset="utf-8">
@@ -54,7 +57,7 @@
    <body>
        
        <%
-  String userName = null;
+  String userName = null, id = null;
   Cookie[] cookies = request.getCookies();
   if (cookies != null)
   {
@@ -62,11 +65,22 @@
     {
         if (cookie.getName().equals("user_name"))
             userName = cookie.getValue();
+        if (cookie.getName().equals("user_id"))
+            id = cookie.getValue();
     }
   }
   
   if (userName == null)
       response.sendRedirect("login.jsp");
+  
+   else
+  {
+      session = request.getSession();
+      session.setAttribute("user", Model.getUser(id));
+  }
+ 
+  User user = Model.getUser(id);
+  ArrayList<Order> orders = Model.getAllOrders(id);
   %>
        <nav class="navbar navbar-custom">
       		<div class="container-fluid">
@@ -108,7 +122,7 @@
                 <h3>MONITOR PURCHASES</h3>
                 <hr>
                 <% 
-                   if(true)
+                   if(orders.size() == 0)
                     out.println("<p>You don't have pending items!</p>");
                    else
                    {
@@ -120,17 +134,20 @@
                            out.println(" <td class=\"col-sm-1\">Item Code</td>");
                            out.println("<td class=\"col-sm-1\">Organization</td>");
                             out.println("<td class=\"col-sm-2\">Item Name</td>");
-                            out.println("<td class=\"col-sm-1\">Num. of Orders</td>");
-                            out.println("<td class=\"col-sm-1\">Remarks</td>");
+                            out.println("<td class=\"col-sm-1\">Quantity</td>");
+                            out.println("<td class=\"col-sm-1\">Status</td>");
                           out.println("</tr>");
                         out.println("</thead>");
                         out.println("<tbody>");
+                        for (int i = 0; i < orders.size(); i++)
+                        {
                           out.println("<tr>");
-                            out.println("<td>00001</td>");
-                            out.println("<td>Active</td>");
-                            out.println("<td>Nice Item</td>");
-                            out.println("<td>" +  1+ "</td>");
-                            out.println("<td>Unclaimed</a></td>");
+                            out.println("<td>" + orders.get(i).getItem().getItem_id() + "</td>");
+                            out.println("<td>" + orders.get(i).getItem().getOrg().getOrg_name() +"</td>");
+                            out.println("<td>" +  orders.get(i).getItem().getItem_name() + "</td>");
+                            out.println("<td>" +  orders.get(i).getOrderQty() + "</td>");
+                            out.println("<td>" + orders.get(i).getStatus() + "</a></td>");
+                        }
                          out.println(" </tr>");
                         out.println("</tbody>");
                       out.println("</table>");
