@@ -89,7 +89,11 @@
                 
                     <li><a class="navbar-acct" href="home-orders.jsp"><span class="glyphicon glyphicon-shopping-cart navbar-acct"></span> Orders </a></li>
                 <li><a class="navbar-acct" href=""><span class="glyphicon glyphicon-user navbar-acct"></span> <%=userName %> </a>
+<<<<<<< HEAD
                 <ul class="dropdown-menu" role="menu" aria-labelledby="ordersort">
+=======
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="ordersort">
+>>>>>>> 040561d26bd450ae9dd06c166be80f2e5be36f56
                 <li role="presentation"><button type="button" tabindex="-1" data-toggle="modal" data-target="#org-list" class="login-as"><span class="glyphicon glyphicon-lock navbar-acct"></span> Switch user...</button></li>
                 <div></div>
                 <li role="presentation"><button type="button" tabindex="-1" data-toggle="modal" data-target="org-list" class="login-as"><span class="glyphicon glyphicon-off navbar-acct"></span> Log Out</button></li>

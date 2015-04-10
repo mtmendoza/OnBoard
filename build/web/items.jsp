@@ -119,12 +119,16 @@
         <div class="span3">
           <div class="sidebar-nav">
             <ul class="nav nav-list">
+<<<<<<< HEAD
               <li class="nav-header"></li>
               <li class="nav-header">Categories</li>
               <li><a href="#">Shirts</a></li>
               <li><a href="#">Tickets</a></li>
               <li><a href="#">Bags</a></li>
               <li><a href="#">Other Apparels</a></li>
+=======
+              <li class="nav-header"><a href="home.jsp">Dashboard</a></li>
+>>>>>>> 040561d26bd450ae9dd06c166be80f2e5be36f56
               <li class="nav-header">Organizations</li>
               <% for (int i = 0; i < Model.getAllOrgs().size(); i++)
               { 
