@@ -71,7 +71,7 @@
        <nav class="navbar navbar-custom">
       		<div class="container-fluid">
             <div class="dropdown navbar-header">
-              <button class="menu-button dropdown-toggle" type="button" id="categories" data-toggle="dropdown" ><span class="glyphicon glyphicon-align-justify"></button>
+              <button class="menu-button dropdown-toggle" type="button" id="categories" data-toggle="dropdown" ><span clas data-toggle="s="glyphicon glyphicon-align-justify"></button>
               <ul class="dropdown-menu" role="menu" aria-labelledby="categories">
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="index.jsp">Dashboard</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#contact">Contact Us</a></li>
@@ -89,7 +89,7 @@
                 
                     <li><a class="navbar-acct" href="home-orders.jsp"><span class="glyphicon glyphicon-shopping-cart navbar-acct"></span> Orders </a></li>
                 <li><a class="navbar-acct" href=""><span class="glyphicon glyphicon-user navbar-acct"></span> <%=userName %> </a>
-                  <ul class="dropdown-menu" role="menu" aria-labelledby="ordersort">
+                <ul class="dropdown-menu" role="menu" aria-labelledby="ordersort">
                 <li role="presentation"><button type="button" tabindex="-1" data-toggle="modal" data-target="#org-list" class="login-as"><span class="glyphicon glyphicon-lock navbar-acct"></span> Switch user...</button></li>
                 <div></div>
                 <li role="presentation"><button type="button" tabindex="-1" data-toggle="modal" data-target="org-list" class="login-as"><span class="glyphicon glyphicon-off navbar-acct"></span> Log Out</button></li>
