@@ -100,7 +100,7 @@
             <ul class="nav nav-list">
               <li><h3>ADMINISTRATOR PANEL</h3></li>
               <li class="nav-header">PROJECTS</li>
-              <li><a href="#"> Create New</a></li>
+              <li><a href="post-item.jsp"> Create New</a></li>
               <li><a href="admin-orders-view.jsp"> View All</a></li>
               <li class="nav-header">Members</li>
               <li><a href="#"> Manage Access</a></li>
