@@ -103,12 +103,14 @@
                <button type="button" class="navbar-search navbar-searchbutton"><span class="glyphicon glyphicon-search"></span></button>
                <ul class="navbar-right">
                    <li><a class="navbar-acct" href="home-orders.jsp"><span class="glyphicon glyphicon-shopping-cart navbar-acct"></span> Orders </a></li>
-                <li><a class="navbar-acct" href="#"><span class="glyphicon glyphicon-user navbar-acct"></span><%=userName %></a></li>
-                  <ul class="dropdown-menu" role="menu" aria-labelledby="ordersort">
-                <li role="presentation"><button type="button" tabindex="-1" data-toggle="modal" data-target="#org-list" class="login-as"><span class="glyphicon glyphicon-lock navbar-acct"></span> Switch user...</button></li>
-                <div></div>
-                <li role="presentation"><button type="button" tabindex="-1" data-toggle="modal" data-target="org-list" class="login-as"><span class="glyphicon glyphicon-off navbar-acct"></span> Log Out</button></li>
-              </ul>
+                   <li><a class="navbar-acct" href="" data-toggle="dropdown" class="dropdown-toggle"><span class="glyphicon glyphicon-user navbar-acct"></span> <%=userName %> </a>
+                       
+                       <ul class="dropdown-menu" role="menu" aria-labelledby="ordersort">
+                            <li role="presentation"><button type="button" tabindex="-1" data-toggle="modal" data-target="#org-list" class="login-as"><span class="glyphicon glyphicon-lock navbar-acct"></span> Switch user...</button></li>
+                            <div></div>
+                            <li role="presentation"><button type="button" tabindex="-1" data-toggle="modal" data-target="org-list" class="login-as"><span class="glyphicon glyphicon-off navbar-acct"></span> Log Out</button></li>
+                        </ul>
+                  </li>
               </ul>
             </div>
           </div>
@@ -119,16 +121,12 @@
         <div class="span3">
           <div class="sidebar-nav">
             <ul class="nav nav-list">
-<<<<<<< HEAD
               <li class="nav-header"></li>
               <li class="nav-header">Categories</li>
               <li><a href="#">Shirts</a></li>
               <li><a href="#">Tickets</a></li>
               <li><a href="#">Bags</a></li>
               <li><a href="#">Other Apparels</a></li>
-=======
-              <li class="nav-header"><a href="home.jsp">Dashboard</a></li>
->>>>>>> 040561d26bd450ae9dd06c166be80f2e5be36f56
               <li class="nav-header">Organizations</li>
               <% for (int i = 0; i < Model.getAllOrgs().size(); i++)
               { 
@@ -144,7 +142,7 @@
           </div><!--/.well -->
         </div><!--/span-->
 
-        <! Modal >
+        <!-- Modal -->
     <div class="modal modal-alert-custom fade" id="org-list" tabindex="-1" role="dialog" aria-labelledby="checkerLabel1" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -153,11 +151,11 @@
             <h4 class="modal-title" id="checkerLabel1">Organizations Managed </h4>
           </div>
           <div class="modal-body">
-            <p>Manager ID: 150001</p> <! must be gotten from sql>
+            <p>Manager ID: 150001</p> <!-- must be gotten from sql-->
             <table class="table">
               <thead>
                 <tr>
-                  <th>Organization</th> <!sql too>
+                  <th>Organization</th> <!--sql too-->
                   <th>Password</th>
                 </tr>
               </thead>

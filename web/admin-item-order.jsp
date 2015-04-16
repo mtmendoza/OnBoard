@@ -4,6 +4,11 @@
     Author     : Theresa
 --%>
 
+<%@page import="jspBeans.Order"%>
+<%@page import="Model.Model"%>
+<%@page import="jspBeans.Organization"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="jspBeans.Item"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,6 +52,23 @@
 
  </head>
  <body>
+     
+       
+<%
+  String orgName = null;
+  ArrayList<Order> listOrders = new ArrayList();
+  session = request.getSession();
+  Organization org = (Organization) session.getAttribute("admin");
+  String itemDisplay = request.getParameter("item");
+  Item item = Model.getItem(Integer.valueOf(itemDisplay));
+  if (org == null)
+      response.sendRedirect("login.jsp");
+  else
+  {
+    orgName = org.getOrg_name();
+    listOrders = Model.getAllOrgOrders(itemDisplay);
+  }
+%>
   
       <nav class="navbar navbar-custom">
           <div class="container-fluid">
@@ -67,8 +89,8 @@
               <input type="text" class="navbar-search navbar-searchbar" placeholder="Search">
                <button type="button" class="navbar-search navbar-searchbutton"><span class="glyphicon glyphicon-search"></span></button>
               <ul class="navbar-right">
-                <li><a class="navbar-acct" href="#"><span class="glyphicon glyphicon-user navbar-acct"></span> Organization Name </a></li>
-                <li><a class="navbar-acct" href="index.jsp"><span class="glyphicon glyphicon-off navbar-acct"></span>Log Out</a></li>
+                <li><a class="navbar-acct" href="#"><span class="glyphicon glyphicon-user navbar-acct"></span><%=orgName%> </a></li>
+                <li><a class="navbar-acct" href="LogoutServlet"><span class="glyphicon glyphicon-off navbar-acct"></span>Log Out</a></li>
               </ul>
             </div>
           </div>
@@ -96,37 +118,39 @@
             <div class="span9">
               <div class= "row" style="margin-left: 0 px; margin-right: 0px;">
                   <div class="hero-unit">
-                    <h2>FROM ORDERS - ITEM NAME</h2>
+                    <h2>FROM ORDERS - <%=item.getItem_name()%></h2>
                     <hr>
                     <div class="panel panel-default">
-                            <div class="panel-heading">Panel heading</div>
+                            <!--div class="panel-heading"></div-->
                             <div class="pagecontent">
+                                <% if (listOrders.size() == 0) {%>  
+                                <p>No orders for this item yet.</p>
+                                <% } else {%>
                                   <div class="row" style="margin-right:0px; padding-left:30px;">
                                       <table class="table-bordered table-revieworders">
                                         <thead>
                                           <tr>
                                             <td class="col-sm-2">Qty</td>
-                                            <td class="col-sm-2">Total</td>
                                             <td class="col-sm-4">Item</td>
-                                            <td class="col-sm-3">Color</td>
                                             <td class="col-sm-4">Customer Name</td>
                                             <td class="col-sm-3">Contact</td>
                                             <td class="col-sm-2">Remarks</td>
                                           </tr>
                                         </thead>
                                         <tbody>
+                                            <%for (int i = 0; i < listOrders.size(); i++) {%> 
                                           <tr>
-                                            <td>2</td>
-                                            <td>? 300.00</td>
-                                            <td>Animo University Shirts</td>
-                                            <td>Green</td>
-                                            <td>Juan Dela Cruz</td>
-                                            <td class="col-sm-3">09271234567</td>
+                                            <td><%=listOrders.get(i).getOrderQty()%></td>
+                                            <td><%=listOrders.get(i).getItem().getItem_name()%></td>
+                                            <td><%=listOrders.get(i).getUser().getFullName()%></td>
+                                            <td class="col-sm-3"><%=listOrders.get(i).getContactno()%></td>
                                             <td><a href="#">Confirm</a><br><a href="#">Cancel</a></td>
                                           </tr>
+                                          <% } %>
                                         </tbody>
                                       </table>
                                 </div>
+                                <% } %>
                             </div>
                     </div>
                       <h6><a style="color:orange"href="admin-orders-view.jsp">BACK TO ORDERS</a></h6>

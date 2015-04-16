@@ -1,5 +1,7 @@
 package jspBeans;
 
+import java.util.ArrayList;
+
 public class Item
 {
     private int item_id;
@@ -8,6 +10,8 @@ public class Item
     private String item_desc;
     private String item_details;
     private Organization org;
+    private ArrayList<Order> itemOrders;
+    private int totalOrders;
 
     public Item(int item_id, String item_name, int item_qty, String item_desc, String item_details, Organization org)
     {
@@ -17,6 +21,8 @@ public class Item
         this.item_desc = item_desc;
         this.item_details = item_details;
         this.org = org;
+        totalOrders = 0;
+        itemOrders = new ArrayList();
     }
 
     public int getItem_id()
@@ -78,6 +84,42 @@ public class Item
     {
         this.org = org;
     }
+    
+    public void addOrder(Order o)
+    {
+        itemOrders.add(o);
+        totalOrders += o.getOrderQty();
+    }
+    
+    public void removeOrder(Order o)
+    {
+        totalOrders -= o.getOrderQty();
+        itemOrders.remove(o);
+    }
+
+    public ArrayList<Order> getItemOrders()
+    {
+        return itemOrders;
+    }
+
+    public void setItemOrders(ArrayList<Order> itemOrders)
+    {
+        this.itemOrders = itemOrders;
+    }
+
+    public int getTotalOrders()
+    {
+        return totalOrders;
+    }
+
+    public void setTotalOrders(int totalOrders)
+    {
+        this.totalOrders = totalOrders;
+    }
+    
+    
+    
+    
     
     
 }

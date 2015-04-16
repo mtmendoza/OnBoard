@@ -187,6 +187,16 @@ public class Model
             while(rs.next())
             {
                 list.add(new Item(rs.getInt("item_id"), rs.getString("item_name"), rs.getInt("item_qty"), rs.getString("item_desc"), rs.getString("item_details"), new Organization(rs.getInt("org_id"), rs.getString("org_name"), rs.getString("password"))));
+                String query2 = "SELECT * FROM orders WHERE item_id = " + rs.getInt("item_id");
+                statement = db.getConnection().prepareStatement(query2);
+                ResultSet rs2 = statement.executeQuery();
+                while (rs2.next())
+                {
+                    User user = getUser(rs2.getString("buyer_id"));
+                    Item item = getItem(rs2.getInt("item_id"));
+                    System.out.println(rs2.getInt("order_qty"));
+                    list.get(list.size() - 1).addOrder(new Order(user, item, rs2.getString("status"), rs2.getString("contact_no"), rs2.getString("order_id"), rs2.getInt("order_qty")));
+                }
             }
         }
         
@@ -295,5 +305,32 @@ public class Model
         return orders;
     }
     
+    public static ArrayList<Order> getAllOrgOrders(String itemID)
+    {
+        db = new DBConnection();
+        db.getConnection();
+        ArrayList<Order> orders = new ArrayList();
+        try
+        {
+            PreparedStatement statement;
+            ResultSet rs;
+            String query = "SELECT * FROM orders WHERE item_id = '" + itemID + "'";
+            statement = db.getConnection().prepareStatement(query);
+            rs = statement.executeQuery();
+            
+            while(rs.next())
+            {
+                User user = getUser(rs.getString("buyer_id"));
+                Item item = getItem(rs.getInt("item_id"));
+                orders.add(new Order(user, item, rs.getString("status"), rs.getString("contact_no"), rs.getString("order_id"), rs.getInt("order_qty")));
+            }
+        }
+        
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return orders;
+    }
     
 }

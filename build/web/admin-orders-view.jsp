@@ -4,6 +4,10 @@
     Author     : Theresa
 --%>
 
+<%@page import="Model.Model"%>
+<%@page import="jspBeans.Organization"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="jspBeans.Item"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,19 +51,36 @@
 
  </head>
  <body>
+     
+  <%
+  
+  
+  String orgName = null;
+  ArrayList<Item> listItems = new ArrayList();
+  session = request.getSession();
+  Organization org = (Organization) session.getAttribute("admin");
+  if (org == null)
+      response.sendRedirect("login.jsp");
+  else
+  {
+    orgName = org.getOrg_name();
+    listItems = Model.getAllItems(org.getOrg_id());
+  }
+  
+  %> 
   
      	<nav class="navbar navbar-custom">
       		<div class="container-fluid">
             <div class="dropdown navbar-header">
               <button class="menu-button dropdown-toggle" type="button" id="categories" data-toggle="dropdown" aria-expanded="true"><span class="glyphicon glyphicon-align-justify"></button>
               <ul class="dropdown-menu" role="menu" aria-labelledby="categories">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Dashboard</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="admin.jsp">Dashboard</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#contact">Contact Us</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#settings">Settings</a></li>
               </ul>
             </div>
         		<div class="navbar-header">
-          			<a class="navbar-link navbar-brand" href="index.jsp">Onboard</a>
+          			<a class="navbar-link navbar-brand" href="admin.jsp">Onboard</a>
         		</div>
         		<div>
               
@@ -67,8 +88,8 @@
           		<input type="text" class="navbar-search navbar-searchbar" placeholder="Search">
             	 <button type="button" class="navbar-search navbar-searchbutton"><span class="glyphicon glyphicon-search"></span></button>
               <ul class="navbar-right">
-                <li><a class="navbar-acct" href="#"><span class="glyphicon glyphicon-user navbar-acct"></span> Organization Name </a></li>
-                <li><a class="navbar-acct" href="#"><span class="glyphicon glyphicon-off navbar-acct"></span>Log Out</a></li>
+                <li><a class="navbar-acct" href="#"><span class="glyphicon glyphicon-user navbar-acct"></span><%=orgName%></a></li>
+                <li><a class="navbar-acct" href="LogoutServlet"><span class="glyphicon glyphicon-off navbar-acct"></span>Log Out</a></li>
               </ul>
         		</div>
       		</div>
@@ -99,6 +120,9 @@
                       <h2>YOUR PROJECTS</h2>
                       <hr>
                        <div class="pagecontent">
+                           <% if (listItems.size() == 0) {%>  
+                           <p>You don't have any items!</p>
+                           <% } else {%>
                           <div class="row" style="padding-left:30px; margin-right:0px;">
                             <table class="table-bordered table-revieworders">
                               <thead>
@@ -111,18 +135,21 @@
                                 </tr>
                               </thead>
                               <tbody>
+                                <%for (int i = 0; i < listItems.size(); i++) {%>  
                                 <tr>
-                                  <td>00001</td>
-                                  <td>Active</td>
-                                  <td>Animo University Shirts</td>
-                                  <td>0</td>
-                                  <td><a href="admin-item-order.jsp">Details</a></td>
+                                  <td><%=listItems.get(i).getItem_id()%></td>
+                                  <td><%=listItems.get(i).getItem_details()%></td>
+                                  <td><%=listItems.get(i).getItem_name()%></td>
+                                  <td><%=listItems.get(i).getTotalOrders()%></td>
+                                  <td><a href="admin-item-order.jsp?item=<%=listItems.get(i).getItem_id()%>">Details</a></td>
                                 </tr>
+                                <% } %>
                               </tbody>
                             </table>
-                          </div> 
+                          </div>
+                          <% } %>
                         </div>
-                        <h6><a style="color:orange"href="#">BACK TO DASHBOARD</a></h6>
+                        <h6><a style="color:orange"href="admin.jsp">BACK TO DASHBOARD</a></h6>
                     </div>
           </div>
         </div><!--/span-->

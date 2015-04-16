@@ -74,12 +74,15 @@
                 session = request.getSession();
                 session.setAttribute("user", Model.getUser(id));
             }
-            
+
             String orgdisplay = request.getParameter("org");
             if (orgdisplay == null || orgdisplay.equals(""))
+            {
                 listItems = Model.getAllItems();
-            else
+            } else
+            {
                 listItems = Model.getAllItems(Integer.valueOf(orgdisplay));
+            }
 
             /*session = request.getSession();
              User user = (User) session.getAttribute("userAccount");
@@ -105,16 +108,17 @@
                 <div>
 
 
-                    <input type="text" class="navbar-search navbar-searchbar" placeholder="Search">
+                    <input type="text" class="navbar-search navbar-searchbar" placeholder="Search" id="complete-field" onkeyup="doCompletion()">
+                    <!--table id="complete-table" class="popupBox" /-->
                     <button type="button" class="navbar-search navbar-searchbutton"><span class="glyphicon glyphicon-search"></span></button>
                     <ul class="navbar-right">
                         <% if (userName != null)
-                    {%>
+                            {%>
                         <li><a class="navbar-acct" href="home-orders.jsp"><span class="glyphicon glyphicon-shopping-cart navbar-acct"></span> Orders </a></li>
                         <li><a class="navbar-acct" href="#"><span class="glyphicon glyphicon-user navbar-acct"></span> <%=userName%> </a></li>
                         <li><a class="navbar-acct" href="LogoutServlet"><span class="glyphicon glyphicon-off navbar-acct"></span>Log Out</a></li>
                             <%} else
-                {%>
+                            {%>
                         <li><a class="navbar-acct" href="login.jsp"> <span class="glyphicon glyphicon-user navbar-acct"></span> Log In</a></li>
                         <li><a class="navbar-acct" href="signup.jsp">Register Now!</a></li>
                             <% } %>
@@ -153,36 +157,36 @@
                 <div class="span9">
                     <div class="hero-unit">
                         <% if (userName != null)
-                {%>
+                            {%>
                         <h1>Hello, <%=userName%>!</h1>
                         <p>Good morning friend, you are so awesome. Everything is awesome. Everything is cool when you are part of a team.</p>
                         <% } else
-            { %>
+                        { %>
                         <h1>Hello, GUEST!</h1>
                         <p>Why don't you register, guest? Login now to order items!</p>
                         <% } %>
                     </div>
 
                     <%
-              for (int ctr = 0; ctr < listItems.size();)
-              { %>
+                        for (int ctr = 0; ctr < listItems.size();)
+                        { %>
                     <div class="row-fluid">
                         <% for (int col = 0; col < 3 && ctr < listItems.size(); col++)
-                    {%>
+                            {%>
                         <div class="span4">
                             <div class="card">
                                 <h2 class="card-heading simple"><%=listItems.get(ctr).getItem_name()%></h2>
                                 <div class="card-body">
                                     <p><%=listItems.get(ctr).getItem_desc()%></p>
                                     <p><% if (userName != null)
-                        {%> 
+                                        {%> 
                                         <a class="btn" href="items.jsp?item=<%=listItems.get(ctr).getItem_id()%>">View details »</a>
                                         <% } %></p> 
                                 </div>
                             </div>
                         </div>
                         <%ctr++;
-                    }%>
+                            }%>
                     </div>    
                     <%}%>
 
@@ -213,6 +217,6 @@
                 <script src="js/bootstrap-carousel.js"></script>
                 <script src="js/bootstrap-typeahead.js"></script>
 
-
+                <script src="assets/js/ajaxScript.js"></script>
                 </body>
                 </html>
