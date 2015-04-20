@@ -139,13 +139,34 @@
                                 <tr>
                                   <td><%=listItems.get(i).getItem_id()%></td>
                                   <td><%=listItems.get(i).getItem_details()%></td>
-                                  <td><%=listItems.get(i).getItem_name()%></td>
+                                  <td><button class="btn btn-default btn-xs" data-toggle="modal" data-target="#open-msg" type="button"><%=listItems.get(i).getItem_name()%></button></td>
                                   <td><%=listItems.get(i).getTotalOrders()%></td>
                                   <td><a href="admin-item-order.jsp?item=<%=listItems.get(i).getItem_id()%>">Details</a></td>
                                 </tr>
                                 <% } %>
                               </tbody>
                             </table>
+
+                            <div class="modal modal-alert-custom fade" id="open-msg" tabindex="-1" role="dialog" aria-labelledby="checkerLabel1" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                                  <h4 class="modal-title" id="checkerLabel1">><%=listItems.get(i).getItem_name()%></h4>
+                                </div>
+                                <div class="modal-body">
+                                  <p>// Conversation here</p>
+                                  <textarea rows="5" cols="50"></textarea>
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Reply</button>
+                                </div>
+                                <div class="modal-footer">
+                                  <center>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                  </center>
+                                </div>
+                              </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                          </div><!-- /.modal -->
                           </div>
                           <% } %>
                         </div>
